@@ -1,28 +1,42 @@
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+        <v-layout>
+            <v-app-bar color="primary"
+                       density="compact"
+                       prominent>
+                <template v-slot:prepend>
+                    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+                </template>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+                <v-app-bar-title>Wordlinator</v-app-bar-title>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">Class</RouterLink>
-        <RouterLink to="/game">Game</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </RouterView>
+                <template v-slot:append>
+                    <v-btn icon="mdi-dots-vertical"></v-btn>
+                </template>
+            </v-app-bar>
+            <v-navigation-drawer v-model="drawer"
+                                 permanent
+                                 >
+                    <v-list>
+                        <v-list-item prepend-icon="mdi-view-dashboard" title=Home link to="/"></v-list-item>
+                        <v-list-item prepend-icon="mdi-folder" title=Class link to="/about"></v-list-item>
+                        <v-list-item prepend-icon="mdi-star" title="Wordle" link to="/game"></v-list-item>
+                    </v-list>
+            </v-navigation-drawer>
+            <v-main>
+                <RouterView v-slot="{ Component }">
+                    <transition name="fade" mode="out-in">
+                        <component :is="Component" />
+                    </transition>
+                </RouterView>
+            </v-main>
+        </v-layout>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+const drawer = ref(false)
 </script>
 
 <style scoped>
