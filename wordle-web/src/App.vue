@@ -1,35 +1,45 @@
 <template>
-        <v-layout>
-            <v-app-bar color="primary"
-                       density="compact"
-                       prominent>
-                <template v-slot:prepend>
-                    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-                </template>
+  <v-layout>
+    <v-app-bar color="primary" density="compact" prominent>
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      </template>
 
-                <v-app-bar-title>Wordlinator</v-app-bar-title>
+      <v-app-bar-title>Wordlinator</v-app-bar-title>
 
-                <template v-slot:append>
-                    <v-btn icon="mdi-dots-vertical"></v-btn>
-                </template>
-            </v-app-bar>
-            <v-navigation-drawer v-model="drawer"
-                                 permanent
-                                 >
-                    <v-list>
-                        <v-list-item prepend-icon="mdi-view-dashboard" title=Home link to="/"></v-list-item>
-                        <v-list-item prepend-icon="mdi-folder" title=Class link to="/about"></v-list-item>
-                        <v-list-item prepend-icon="mdi-star" title="Wordle" link to="/game"></v-list-item>
-                    </v-list>
-            </v-navigation-drawer>
-            <v-main>
-                <RouterView v-slot="{ Component }">
-                    <transition name="fade" mode="out-in">
-                        <component :is="Component" />
-                    </transition>
-                </RouterView>
-            </v-main>
-        </v-layout>
+      <template v-slot:append>
+        <v-btn icon="mdi-dots-vertical"></v-btn>
+      </template>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" permanent :width="90" rail>
+      <v-list style="align-items: center">
+        <v-col>
+          <v-row>
+            <v-list-item prepend-icon="mdi-view-dashboard" to="/" nav class="pt-3">
+              <v-tooltip activator="parent" location="start" theme="light"> Home </v-tooltip>
+            </v-list-item>
+          </v-row>
+          <v-row>
+            <v-list-item prepend-icon="mdi-folder" to="/about" nav class="pt-3">
+              <v-tooltip activator="parent" location="start" theme="light"> Class </v-tooltip>
+            </v-list-item>
+          </v-row>
+          <v-row>
+            <v-list-item prepend-icon="mdi mdi-nintendo-game-boy" to="/game" nav class="pt-3">
+              <v-tooltip activator="parent" location="start" theme="light"> Wordlinator </v-tooltip>
+            </v-list-item>
+          </v-row>
+        </v-col>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main>
+      <RouterView v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </RouterView>
+    </v-main>
+  </v-layout>
 </template>
 
 <script setup lang="ts">
