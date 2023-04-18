@@ -1,6 +1,7 @@
 <template>
   <main>
     <TheWelcome />
+        <v-btn variant="outlined" to="/game" color="arabicaMint">To Wordlinator</v-btn>
   </main>
 </template>
 
