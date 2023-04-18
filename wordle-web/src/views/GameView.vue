@@ -3,7 +3,12 @@
     <v-card-title> Wordlinator </v-card-title>
     <v-card-subtitle>This is a game about words</v-card-subtitle>
     <v-card-text>
-      <v-text-field v-model="guess" label="Guess" variant="solo"></v-text-field>
+      <v-text-field
+        v-model="guess"
+        label="Guess"
+        variant="solo"
+        @keyup.enter="checkGuess"
+      ></v-text-field>
       <v-card>
         <v-card-text>
           <h3>Current Guess: {{ guess }}</h3>
