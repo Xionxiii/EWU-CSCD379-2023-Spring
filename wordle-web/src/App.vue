@@ -1,17 +1,16 @@
 <template>
   <v-layout>
     <v-app-bar color="primary" density="compact" prominent>
-      <template v-slot:prepend>
+      <template v-slot:append>
+        <v-btn icon="mdi mdi-cog"></v-btn>
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </template>
 
-      <v-app-bar-title>Wordlinator</v-app-bar-title>
-
-      <template v-slot:append>
-        <v-btn icon="mdi-dots-vertical"></v-btn>
-      </template>
+      <v-app-bar-title>
+        <v-btn prepend-icon="mdi mdi-magic-staff" to="/"> Wordlinator </v-btn>
+      </v-app-bar-title>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" permanent :width="90" rail>
+    <v-navigation-drawer v-model="drawer" permanent :width="90" rail location="right">
       <v-list style="align-items: center">
         <v-col>
           <v-row>
